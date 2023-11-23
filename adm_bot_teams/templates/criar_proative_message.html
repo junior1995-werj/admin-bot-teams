@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<script>
+  var line = 1;
+  function addNewParagrafo(divName) {
+    var newdiv = document.createElement('div');
+
+    newdiv.innerHTML = '<div class="row"><div class="form-group col-sm-11"><label  for=""></label><textarea type="text" cols="30" rows="4" name="description_'+line +'" id="description_'+line +'" class="form-control" placeholder=""></textarea>  </div><div class="form-group col-sm-1"><button type="button" style="margin-top: 20px;"  class="btn btn-danger waves-effect waves-light" onclick="parentNode.parentNode.remove()">X</button></div>';
+
+    document.getElementById(divName).appendChild(newdiv);
+    line++;
+  }
+  addNewParagrafo('lines');
+</script>
+
+
+<div class="container-fluid">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">Criar novo Card</h5>
+        <div class="card">
+          <div class="card-body">
+            <form method="POST" action = "/create" enctype = "multipart/form-data">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Titulo</label>
+                <input type="text" class="form-control" name="tittle" id="tittle" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Favor adicionar um titulo ao Card</div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Paragrafos</label>
+                <div id="emailHelp" class="form-text">Favor adicionar os paragrafos do card</div>
+                <div id="lines"></div>
+                <br>
+                <button type="button" onclick="addNewParagrafo('lines')" class="btn btn-primary">Adicionar</button>
+              </div>
+              <div class="mb-3">
+                <label for="disabledSelect" class="form-label">Time</label>
+                <select id="disabledSelect" class="form-select" name="team">
+                  <option value="RH">RH</option>
+                  <option value="TIC">TIC</option>
+                </select>
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="card_options">
+                <label class="form-check-label" for="exampleCheck1">Card de opções</label>
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="recurring_send">
+                <label class="form-check-label" for="exampleCheck1">Card de mensagem proativa</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Criar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

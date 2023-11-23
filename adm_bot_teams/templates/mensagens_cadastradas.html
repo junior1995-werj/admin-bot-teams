@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="card">
+  <div class="card-body">
+      <div class="card w-100">
+        <div class="card-body p-4">
+          <h5 class="card-title fw-semibold mb-4">Cards Criados</h5>
+          <div class="table-responsive">
+            <table class="table text-nowrap mb-0 align-middle">
+              <thead class="text-dark fs-4">
+                <tr>
+                  <th class="border-bottom-1" hidden>
+                    <h6 class="fw-semibold mb-0" >ID</h6>
+                  </th>
+                  <th class="border-bottom-1" hidden>
+                    <h6 class="fw-semibold mb-0" >Data Criação</h6>
+                  </th>
+                  <th class="border-bottom-1">
+                    <h6 class="fw-semibold mb-0">Titulo</h6>
+                  </th>
+                  <th class="border-bottom-1">
+                    <h6 class="fw-semibold mb-0">Proativo</h6>
+                  </th>
+                  <th class="border-bottom-1">
+                    <h6 class="fw-semibold mb-0">Opções</h6>
+                  </th>
+                  <th class="border-bottom-1">
+                    <h6 class="fw-semibold mb-0">Ultima Atualização</h6>
+                  </th>
+                  <th class="border-bottom-1">
+                    <h6 class="fw-semibold mb-0">Time</h6>
+                  </th>
+                  <th class="border-bottom-1'">
+                    <h6 class="fw-semibold mb-0">Status</h6>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for value in list_cards %}
+                <tr>
+                  <td class="border-bottom-0" hidden>
+                    <h6 class="fw-semibold mb-1" >{{ value.id }}</h6>
+                  </td>
+                  <td class="border-bottom-0" hidden>
+                    <h6 class="fw-semibold mb-1">{{ value.created_at }}</h6>
+                  </td>
+                  <td class="border-bottom-0">
+                    <a href="edit_config/{{ value.id }}" data-toggle="tooltip" data-placement="top" title="Update" name="host">{{ value.tittle }}</a>
+                  </td>
+                  <td class="border-bottom-0">
+                    {% if value.recurring_send %} 
+                    <img src="{% static '/assets/images/logos/ok.png' %}" alt="" width="15" height="15" class="rounded-circle">
+                    {% endif %}
+                  </td>
+                  <td class="border-bottom-0">
+                    {% if value.card_options %} 
+                    <img src="{% static '/assets/images/logos/ok.png' %}" alt="" width="15" height="15" class="rounded-circle">
+                    {% endif %}
+                  </td>
+                  <td class="border-bottom-0">
+                    <h6 class="fw-semibold mb-1">{{ value.last_update }}</h6>
+                  </td>
+                  <td class="border-bottom-0">
+                    <h6 class="fw-semibold mb-1">{{ value.team }}</h6>
+                  </td>
+                  <td class="border-bottom-0">
+                    {% if value.status %} 
+                    <img src="{% static '/assets/images/logos/ok.png' %}" alt="" width="15" height="15" class="rounded-circle">
+                    {% else %}
+                    <img src="{% static '/assets/images/logos/nao.png' %}" alt="" width="15" height="15" class="rounded-circle">
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

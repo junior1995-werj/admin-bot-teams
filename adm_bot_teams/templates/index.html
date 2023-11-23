@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-lg-8 d-flex align-items-strech">
+    <div class="card w-100">
+      <div class="card-body">
+        <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+          <div class="mb-3 mb-sm-0">
+            <h5 class="card-title fw-semibold">Quantidade de mensagens enviadas por dia</h5>
+          </div>
+        </div>
+        <div id="dashboard_1" value-day-chart="{{ list_values_days }}"></div>
+        <div id="dashboard_2" day-chart="{{ list_days }}"></div>
+        <div id="chart">
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card overflow-hidden">
+          <div class="card-body p-4">
+            <h5 class="card-title mb-9 fw-semibold">Mensagens no Ano</h5>
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h4 class="fw-semibold mb-3">{{ year_value }}</h4>
+                <div class="d-flex align-items-center mb-3">
+                  <div id="dashboard_3" list-years="{{ list_years }}"></div>
+                  <div id="dashboard_4" list-years-values="{{ list_years_values }}"></div>
+                  {% if percent_year >= 0 %}
+                    <span
+                      class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-arrow-up-left text-success"></i>
+                    </span>
+                    <p class="text-dark me-1 fs-3 mb-0">+{{ percent_year }}%</p>
+                  {% else %}
+                    <span
+                      class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-arrow-down-right text-danger"></i>
+                    </span>
+                    <p class="text-dark me-1 fs-3 mb-0">+{{ percent_year }}%</p>
+                  {% endif %}
+                  
+                  <p class="fs-3 mb-0"> ultimo ano</p>
+                </div>
+                <div class="d-flex align-items-center">
+                  {% for years in list_years %}
+                    {% if years == year %}
+                    <div class="me-4">
+                      <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
+                      <span class="fs-2">{{ years }}</span>
+                    </div>
+                    {% else %}
+                    <div>
+                      <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
+                      <span class="fs-2">{{ years }}</span>
+                    </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="d-flex justify-content-center">
+                  <div id="breakup"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <!-- Monthly Earnings -->
+        <div class="card">
+          <div class="card-body">
+            <div class="row alig n-items-start">
+              <div class="col-8">
+                <h5 class="card-title mb-9 fw-semibold"> Mensagens no mês </h5>
+                <h4 class="fw-semibold mb-3">{{ month_value_return }}</h4>
+                <div class="d-flex align-items-center pb-1">
+                  {% if percent_month >= 0 %}
+                    <span
+                      class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-arrow-up-left text-success"></i>
+                    </span>
+                    <p class="text-dark me-1 fs-3 mb-0">+{{ percent_month }}%</p>
+                  {% else %}
+                    <span
+                      class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-arrow-down-right text-danger"></i>
+                    </span>
+                    <p class="text-dark me-1 fs-3 mb-0">+{{ percent_month }}%</p>
+                  {% endif %}
+                  <p class="fs-3 mb-0"> Comparação aos meses anteriores</p>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="d-flex justify-content-end">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="dashboard_5" list-month-values="{{ list_month_values }}"></div>
+          <div id="earning"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-4 d-flex align-items-stretch">
+    <div class="card w-100">
+      <div class="card-body p-4">
+        <div class="mb-4">
+          <h5 class="card-title fw-semibold">Mensagens Agendadas</h5>
+        </div>
+        <ul class="timeline-widget mb-0 position-relative mb-n5">
+          <li class="timeline-item d-flex position-relative overflow-hidden">
+            <div class="timeline-time text-dark flex-shrink-0 text-end">00:00</div>
+            <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+              <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
+              <span class="timeline-badge-border d-block flex-shrink-0"></span>
+            </div>
+            <div class="timeline-desc fs-3 text-dark mt-n1">Modulo em Desenvolvimento</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8 d-flex align-items-stretch">
+    <div class="card w-100">
+      <div class="card-body p-4">
+        <h5 class="card-title fw-semibold mb-4">Principais duvidas</h5>
+        <div class="table-responsive">
+          <table class="table text-nowrap mb-0 align-middle">
+            <thead class="text-dark fs-4">
+              <tr>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Time</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Titulo</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Quantidade</h6>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              {% for value in list_card_quantity %}
+              <tr>
+                <td class="border-bottom-0">
+                  <h6 class="fw-semibold mb-1">{{ value.team }}</h6>
+                </td>
+                <td class="border-bottom-0">
+                  <h6 class="fw-semibold mb-1">{{ value.tittle }}</h6>
+                </td>
+                <td class="border-bottom-0">
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary rounded-3 fw-semibold">{{ value.quantity }}</span>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
