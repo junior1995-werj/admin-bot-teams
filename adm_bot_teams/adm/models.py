@@ -18,7 +18,7 @@ class CardModel(models.Model):
 
     class Meta:
         managed = False
-        db_table = "bot_agility_card"
+        db_table = "bot_teams_card"
 
 class AccessedCardModel(models.Model): 
 
@@ -29,4 +29,4 @@ class AccessedCardModel(models.Model):
 
     class Meta:
         
-        db_table = "bot_agility_accessed_card"
+        db_table = "bot_teams_accessed_card"

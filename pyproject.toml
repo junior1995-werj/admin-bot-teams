@@ -2,7 +2,7 @@
 name = "interface-chat-bot-django"
 version = "0.1.0"
 description = ""
-authors = ["Ewald Werner Junior <junior.werner@somosagility.com.br>"]
+authors = ["Ewald Werner Junior <junior.werner@somosteams.com.br>"]
 readme = "README.md"
 packages = [{include = "interface_chat_bot_django"}]
 
